@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bug Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="app-title">Bug Tracker</h1>
+    <div class="board">
+        <div class="section">
+            <div class="heading">
+                <h3>Requested</h3>
+            </div>
+            <div class="list">
+                <div class="card requested">
+                    <h4>Card 1</h4>
+                    <p>Description of Card 1</p>
+                </div>
+                <div class="card requested">
+                    <h4>Card 2</h4>
+                    <p>Description of Card 2</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="heading">
+                <h3>In Progress</h3>
+            </div>
+            <div class="list">
+                <div class="card in-progress">
+                    <h4>Card 3</h4>
+                    <p>Description of Card 3</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="heading">
+                <h3>Done</h3>
+            </div>
+            <div class="list">
+                <div class="card done">
+                    <h4>Card 4</h4>
+                    <p>Description of Card 4</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NEW: Footer Links -->
+    <div class="footer-links">
+        <a href="#">Archived</a>
+        <a href="#" id="theme-toggle" onclick="togglebg()">Appearance</a>
+        <a href="#">Support</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

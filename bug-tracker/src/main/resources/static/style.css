@@ -1,0 +1,162 @@
+
+:root {
+    --bg-color: #736F60;
+    --dot-color: rgba(144, 158, 174, 0.2);
+    --title-color: #2b2923;
+    --section-bg: rgba(0, 0, 0, 0.15); 
+    --header-bg: #5C8DC5;
+    --header-text: #2b2923;
+    --card-text: #2b2923;
+    --card-border: #736F60;
+    --req-bg: #A06A6A;
+    --prog-bg: #BAA360;
+    --done-bg: #6F7A59;
+    
+    /* FIX: A subtle dark olive, darker than #736F60 */
+    --link-color: #4F473F; 
+}
+
+.dark-mode {
+    --bg-color: #2b2923;
+    --dot-color: rgba(92, 141, 197, 0.15); 
+    --title-color: #d6cabf;
+    --section-bg: rgba(0, 0, 0, 0.25); 
+    --header-bg: #4674a6;
+    --header-text: #f0f0f0;
+    --card-text: #f4f5f7;
+    --card-border: #1a1915;
+    --req-bg: #734b4b;
+    --prog-bg: #8c7a44;
+    --done-bg: #4c543c;
+    
+    /* FIX: A muted taupe, lighter than #2b2923 */
+    --link-color: #dbc8b0; 
+}
+
+/* --- 2. LAYOUT UPDATES --- */
+
+body {
+    height: 100vh; /* FIX: Forces the app to fit the exact window height without scrolling */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    overflow: hidden; /* FIX: Disables the browser scrollbar entirely */
+    
+    background-color: var(--bg-color); 
+    background-image: radial-gradient(var(--dot-color) 2px, transparent 2px);
+    background-size: 30px 30px;
+    transition: background-color 0.3s ease;
+}
+
+.app-title {
+    font-family: 'Sreda', Georgia, serif;
+    color: var(--title-color);
+    font-size: 2.5rem;
+    margin: 25px 0; /* Reduced to save vertical space for the larger list */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    width: 100%;
+    max-width: 1200px; 
+    flex: 1; /* FIX: Tells the board to stretch vertically to fill available space */
+    max-height: 600px; /* Safety cap so it doesn't get too tall on huge monitors */
+    filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.2)); 
+}
+
+.section {
+    border: 2px solid var(--header-bg); 
+    border-radius: 16px;
+    flex: 1;
+    text-align: center;
+    background-color: var(--section-bg); /* Ensures the whole column is dark slate */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.list {
+    box-sizing: border-box; /* FOOLPROOF FIX: Forces padding inside the 100% width */
+    display: flex;
+    width: 100%; 
+    margin: 0; /* Removed 'auto' to prevent weird shifting */
+    align-items: center; /* Centers the cards perfectly */
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    height: 100%; 
+    overflow-y: auto; 
+    background-color: transparent; 
+}
+
+.heading {
+    background-color: var(--header-bg); 
+    color: var(--header-text); 
+    padding: 15px 0; 
+    width: 100%;
+    border-bottom: 2px solid var(--header-bg); 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.heading h3 {
+    margin: 0; 
+    font-family: 'Sreda', Georgia, serif; 
+    font-weight: bold; 
+}
+
+/* Scrollbar styling so it doesn't look ugly when it appears */
+.list::-webkit-scrollbar {
+    width: 6px;
+}
+.list::-webkit-scrollbar-thumb {
+    background-color: var(--header-bg);
+    border-radius: 4px;
+}
+
+.card {
+    box-sizing: border-box; /* FOOLPROOF FIX: Forces borders inside the width */
+    border: 2px solid var(--card-border); 
+    border-radius: 16px;
+    width: 100%; /* Now safely spans the exact width of the list */
+    margin: 0; /* Guarantees no invisible margins push it right */
+    flex-shrink: 0; 
+    padding: 10px;
+    color: var(--card-text); 
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card.requested { background-color: var(--req-bg); }
+.card.in-progress { background-color: var(--prog-bg); }
+.card.done { background-color: var(--done-bg); }
+
+/* --- 3. FOOTER LINKS STYLING --- */
+
+.footer-links {
+    margin-top: auto; /* Locks footer to the bottom */
+    display: flex;
+    gap: 30px;
+    padding: 20px 0; /* Reduced padding to fit perfectly on screen */
+}
+
+.footer-links a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.2s ease, color 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+}

@@ -20,7 +20,7 @@ This project demonstrates client-server architecture, utilizing a RESTful API bu
 * **Persistent UI:** Dark mode preferences saved via browser `localStorage`.
 * **Production-Ready Docker:** Multi-stage build utilizing a non-root user and automated actuator health checks for secure, reliable deployment.
 
-## 📡 API Endpoints
+## API Endpoints
 * `GET /api/issues` - Retrieve all issues
 * `POST /api/issues` - Create a new issue
 * `PUT /api/issues/{id}` - Update an existing issue (status, title, etc.)

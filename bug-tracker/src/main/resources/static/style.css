@@ -1,7 +1,7 @@
 
 :root {
     --bg-color: #736F60;
-    --dot-color: rgba(144, 158, 174, 0.2);
+    --dot-color: rgba(73, 81, 92, 0.40);
     --title-color: #2b2923;
     --section-bg: rgba(0, 0, 0, 0.15); 
     --header-bg: #5C8DC5;
@@ -11,14 +11,14 @@
     --req-bg: #A06A6A;
     --prog-bg: #BAA360;
     --done-bg: #6F7A59;
-    
+    --desc-color: #333129; /* FIX: A dark taupe for the description text */
     /* FIX: A subtle dark olive, darker than #736F60 */
     --link-color: #1a1915; 
 }
 
 .dark-mode {
     --bg-color: #2b2923;
-    --dot-color: rgba(92, 141, 197, 0.15); 
+    --dot-color: rgba(164, 181, 201, 0.25); 
     --title-color: #d6cabf;
     --section-bg: rgba(0, 0, 0, 0.25); 
     --header-bg: #4674a6;
@@ -28,7 +28,7 @@
     --req-bg: #734b4b;
     --prog-bg: #8c7a44;
     --done-bg: #4c543c;
-    
+    --desc-color: #cfc6b8; /* FIX: A lighter taupe for the description text */
     /* FIX: A muted taupe, lighter than #2b2923 */
     --link-color: #dbc8b0; 
 }
@@ -122,15 +122,43 @@ body {
 }
 
 .card {
-    box-sizing: border-box; /* FOOLPROOF FIX: Forces borders inside the width */
-    border: 2px solid var(--card-border); 
-    border-radius: 16px;
-    width: 100%; /* Now safely spans the exact width of the list */
-    margin: 0; /* Guarantees no invisible margins push it right */
-    flex-shrink: 0; 
-    padding: 10px;
-    color: var(--card-text); 
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 12px; /* Restores the rounded edges */
+    padding: 15px;       /* Adds breathing room inside the card */
+    margin-bottom: 15px; /* Adds space between stacked cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the content */
+    text-align: center;
+}
+
+/* Styling for all buttons inside cards */
+.card button {
+    background-color: #4a90e2; /* A clean blue */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Rounded edges */
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card button:hover {
+    background-color: #357abd;
+    transform: translateY(-1px); /* Slight lift on hover */
+}
+
+.card button:active {
+    transform: translateY(1px); /* Click effect */
+}
+
+/* Specific styling for the Archive button to make it distinct */
+.card.done button {
+    background-color: #e74c3c; /* A warning/action red */
+}
+.card.done button:hover {
+    background-color: #c0392b;
 }
 
 .card.requested { background-color: var(--req-bg); }
@@ -159,4 +187,112 @@ body {
 .footer-links a:hover {
     opacity: 0.7;
     text-decoration: underline;
+}
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.6); /* Semi-transparent background */
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #f4f4f9;
+    margin: 10% auto; 
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Dark mode support for modal */
+body.dark-mode .modal-content {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+/* Close Button (X) */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+}
+.close-btn:hover { color: #000; }
+body.dark-mode .close-btn:hover { color: #fff; }
+
+/* Form layout inside modal */
+#create-issue-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+#create-issue-form input, 
+#create-issue-form textarea, 
+#create-issue-form select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 14px;
+}
+body.dark-mode #create-issue-form input,
+body.dark-mode #create-issue-form textarea,
+body.dark-mode #create-issue-form select {
+    background-color: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+/* Add Button (+) in header */
+.add-btn {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.1s;
+}
+.add-btn:active { transform: scale(0.9); }
+
+/* Submit Button in form */
+.submit-btn {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+.submit-btn:hover { background-color: #357abd; }
+
+/* Grid layout for the archived cards */
+#archived-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    align-items: start; /* Prevents cards from stretching vertically */
+}
+
+/* Ensure the cards inside the grid take up their full grid cell */
+#archived-list .card {
+    width: auto;
+    margin-bottom: 0; /* Removes the old vertical stacking margin */
 }

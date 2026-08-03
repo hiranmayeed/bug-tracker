@@ -8,50 +8,66 @@
 </head>
 <body>
     <h1 class="app-title">Bug Tracker</h1>
+    <!-- NEW: Description text -->
+    <div><p style="text-align: center; max-width: 600px; margin: -10px auto 30px auto; color: var(--desc-color); font-size: 16px; line-height: 1.5;">
+        A lightweight Kanban system designed to track feature requests, monitor active development, and archive resolved issues.
+    </p></div>
+    <div><p style="text-align: center; max-width: 600px; margin: -10px auto 30px auto; color: var(--desc-color); font-size: 16px; line-height: 1.5;">
+        A dynamic issue management system. Click the '+' button to log a new request, use the 'Next' buttons to move cards through the development pipeline, and filter by priority to organize the board. Check the Archive page to view completed tasks.
+    </p></div>
+    <div class="filter-section" style="text-align: center; margin-bottom: 20px; color: var(--desc-color);">
+    <label for="priority-filter"><strong>Filter by Priority: </strong></label>
+    <select id="priority-filter" onchange="fetchAndRenderIssues()" style="padding: 5px; border-radius: 5px;">
+        <option value="ALL">All</option>
+        <option value="HIGH">High</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="LOW">Low</option>
+    </select>
+</div>
     <div class="board">
         <div class="section">
-            <div class="heading">
-                <h3>Requested</h3>
+            <div class="heading" style="position: relative; display: flex; justify-content: center; align-items: center; padding: 15px 0;">
+                <h3 style="margin: 0;">Requested</h3>
+                <button onclick="openModal()" class="add-btn" style="position: absolute; right: 15px;">+</button>
             </div>
-            <div class="list">
-                <div class="card requested">
-                    <h4>Card 1</h4>
-                    <p>Description of Card 1</p>
-                </div>
-                <div class="card requested">
-                    <h4>Card 2</h4>
-                    <p>Description of Card 2</p>
-                </div>
+            <div class="list" id="requested-list">
             </div>
         </div>
         <div class="section">
-            <div class="heading">
-                <h3>In Progress</h3>
-            </div>
-            <div class="list">
-                <div class="card in-progress">
-                    <h4>Card 3</h4>
-                    <p>Description of Card 3</p>
-                </div>
+            <div class="heading"><h3>In Progress</h3></div>
+            <div class="list" id="in-progress-list">
             </div>
         </div>
-        <div class="section">
-            <div class="heading">
-                <h3>Done</h3>
+        <div class="section"><div class="heading"><h3>Done</h3>
             </div>
-            <div class="list">
-                <div class="card done">
-                    <h4>Card 4</h4>
-                    <p>Description of Card 4</p>
-                </div>
+            <div class="list" id="done-list">
             </div>
         </div>
     </div>
     <!-- NEW: Footer Links -->
     <div class="footer-links">
-        <a href="#">Archived</a>
+        <!-- FIX: Update href to point to the new file -->
+        <a href="archived.html">Archived</a>
         <a href="#" id="theme-toggle" onclick="togglebg()">Appearance</a>
         <a href="#">Support</a>
+    </div>
+    <!-- The Hidden Modal -->
+    <div id="create-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2>Create New Request</h2>
+            <form id="create-issue-form">
+                <input type="text" id="issue-title" placeholder="Title" required>
+                <textarea id="issue-desc" placeholder="Description" rows="3" required></textarea>
+                <select id="issue-priority">
+                    <option value="LOW">Low</option>
+                    <option value="MEDIUM">Medium</option>
+                    <option value="HIGH">High</option>
+                </select>
+                <input type="text" id="issue-remarks" placeholder="Remarks (Optional)">
+                <button type="submit" class="submit-btn">Create Bug</button>
+            </form>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

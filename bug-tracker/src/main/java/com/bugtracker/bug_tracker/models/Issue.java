@@ -16,7 +16,10 @@ public class Issue {
     private String description;
     private String priority;
     private String status;
-
+    private String remarks;
+    private java.time.LocalDate createdAt;
+    private java.time.LocalDate completedAt;
+    
     // Default Constructor (Required by JPA)
     public Issue() {}
 
@@ -35,4 +38,14 @@ public class Issue {
 
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public String getRemarks() { return remarks; }
+    public void setRemarks(String remarks) { this.remarks = remarks; }
+
+    // ADDED: Getters and Setters for dates
+    public java.time.LocalDate getCreatedAt() { return createdAt; }
+    public void setCreatedAt(java.time.LocalDate createdAt) { this.createdAt = createdAt; }
+
+    public java.time.LocalDate getCompletedAt() { return completedAt; }
+    public void setCompletedAt(java.time.LocalDate completedAt) { this.completedAt = completedAt; }
 }

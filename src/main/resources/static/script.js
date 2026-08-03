@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080/api/issues';
+const API_URL = '/api/issues';
 
 // Apply dark mode on page load if previously saved
 if (localStorage.getItem('theme') === 'dark') {

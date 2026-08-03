@@ -1,7 +1,7 @@
 
 :root {
     --bg-color: #908a78e9;
-    --dot-color: rgba(73, 81, 92, 0.40);
+    --dot-color: rgba(73, 81, 92, 0.15);
     --title-color: #2b2923;
     --section-bg: rgba(0, 0, 0, 0.15); 
     --header-bg: #5C8DC5;
@@ -18,7 +18,7 @@
 
 .dark-mode {
     --bg-color: #2b2923;
-    --dot-color: rgba(164, 181, 201, 0.25); 
+    --dot-color: rgba(164, 181, 201, 0.15); 
     --title-color: #d6cabf;
     --section-bg: rgba(0, 0, 0, 0.25); 
     --header-bg: #4674a6;
